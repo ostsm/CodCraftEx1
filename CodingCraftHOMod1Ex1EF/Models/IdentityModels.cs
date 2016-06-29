@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using CodingCraftHOMod1Ex1EF.Migrations;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 using System.Security.Claims;
@@ -29,12 +30,25 @@ namespace IdentitySample.Models
         {
             // Set the database intializer which is run once during application start
             // This seeds the database with admin user credentials and admin role
-            Database.SetInitializer<ApplicationDbContext>(new ApplicationDbInitializer());
+            // Database.SetInitializer<ApplicationDbContext>(new ApplicationDbInitializer());
+            Database.SetInitializer<ApplicationDbContext>(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
         }
 
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<CodingCraftHOMod1Ex1EF.Models.Produto> Produtos { get; set; }
+
+        public System.Data.Entity.DbSet<CodingCraftHOMod1Ex1EF.Models.Fornecedor> Fornecedores { get; set; }
+
+        public System.Data.Entity.DbSet<CodingCraftHOMod1Ex1EF.Models.ProdutoFornecedor> ProdutosFornecedores { get; set; }
+
+        public System.Data.Entity.DbSet<CodingCraftHOMod1Ex1EF.Models.Cliente> Clientes { get; set; }
+
+        public System.Data.Entity.DbSet<CodingCraftHOMod1Ex1EF.Models.MovimentacaoCliente> MovimentacaoClientes { get; set; }
+
+        public System.Data.Entity.DbSet<CodingCraftHOMod1Ex1EF.Models.MovimentacaoFornecedor> MovimentacaoFornecedors { get; set; }
     }
 }

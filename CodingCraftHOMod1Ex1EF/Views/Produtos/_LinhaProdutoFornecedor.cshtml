@@ -1,0 +1,18 @@
+﻿@model CodingCraftHOMod1Ex1EF.Models.ProdutoFornecedor
+
+@using (Html.BeginCollectionItem("ProdutoFornecedores"))
+{
+    <div class="form-group">
+        @Html.HiddenFor(model => model.ProdutoFornecedorId)
+        @Html.HiddenFor(model => model.ProdutoId)
+
+        <label class="col-md-1 control-label">Nome</label>
+        <div class="col-md-5">
+            @Html.DropDownListFor(x => x.FornecedorId, (SelectList)ViewBag.Fornecedores, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.FornecedorId, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-2">
+            <a class="btn red" onclick="$(this).parent().parent().remove();">Excluir</a>
+        </div>
+    </div>
+}
