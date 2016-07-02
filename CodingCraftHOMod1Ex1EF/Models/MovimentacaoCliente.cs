@@ -23,6 +23,10 @@ namespace CodingCraftHOMod1Ex1EF.Models
 
         [Required]
         public int Quantidade { get; set; }
+
+        public int ClienteId { get; set; }
+
+        public int ProdutoId { get; set; }
         
         public virtual ICollection<Cliente> Cliente { get; set; }
 

@@ -16,6 +16,13 @@ namespace CodingCraftHOMod1Ex1EF.Models
         [Required]
         public decimal PrecoVenda { get; set; }
 
+        public int Estoque { get; set; }
+
         public virtual ICollection<ProdutoFornecedor> ProdutoFornecedores { get; set; }
+
+        public List<MovimentacaoFornecedor> MovimentacaoFornecedor { get; set; }
+
+        public List<MovimentacaoCliente> MovimentacaoCliente { get; set; }
+
     }
 }

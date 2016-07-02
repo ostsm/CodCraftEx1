@@ -15,5 +15,9 @@ namespace CodingCraftHOMod1Ex1EF.Models
         public String Nome { get; set; }
 
         public virtual ICollection<ProdutoFornecedor> FornecedorProdutos { get; set; }
+
+        public List<MovimentacaoFornecedor> MovimentacaoFornecedor { get; set; }
+
+
     }
 }

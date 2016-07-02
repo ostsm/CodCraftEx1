@@ -17,7 +17,15 @@ namespace CodingCraftHOMod1Ex1EF.Models
         public String Nome { get; set; }
 
         [Required]
+        public string Usuario { get; set; }
+
+        [Required]
+        public string Senha { get; set; }
+
+        [Required]
         public String Setor { get; set; }
 
-     }
+        public List<MovimentacaoCliente> MovimentacaoCliente { get; set; }
+
+    }
 }
