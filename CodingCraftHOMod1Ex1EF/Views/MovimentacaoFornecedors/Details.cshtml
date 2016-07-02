@@ -1,42 +1,66 @@
 ﻿@model CodingCraftHOMod1Ex1EF.Models.MovimentacaoFornecedor
 
 @{
-    ViewBag.Title = "Details";
+    Layout = null;
 }
 
-<h2>Details</h2>
+<!DOCTYPE html>
 
-<div>
-    <h4>MovimentacaoFornecedor</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Valor)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Valor)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Data)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Data)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Quantidade)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Quantidade)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MovimentacaoFornecedorId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>MovimentacaoFornecedor</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Fornecedor.Nome)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Fornecedor.Nome)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Produto.Nome)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Produto.Nome)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Valor)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Valor)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Data)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Data)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Quantidade)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Quantidade)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.MovimentacaoFornecedorId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

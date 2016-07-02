@@ -245,11 +245,6 @@
     <Content Include="Views\ProdutosFornecedores\Index.cshtml" />
     <Content Include="Views\Produtos\_ProdutosFornecedores.cshtml" />
     <Content Include="Views\Produtos\_LinhaProdutoFornecedor.cshtml" />
-    <Content Include="Views\Clientes\Create.cshtml" />
-    <Content Include="Views\Clientes\Delete.cshtml" />
-    <Content Include="Views\Clientes\Details.cshtml" />
-    <Content Include="Views\Clientes\Edit.cshtml" />
-    <Content Include="Views\Clientes\Index.cshtml" />
     <Content Include="Views\MovimentacaoClientes\Create.cshtml" />
     <Content Include="Views\MovimentacaoClientes\Delete.cshtml" />
     <Content Include="Views\MovimentacaoClientes\Details.cshtml" />
@@ -260,6 +255,11 @@
     <Content Include="Views\MovimentacaoFornecedors\Details.cshtml" />
     <Content Include="Views\MovimentacaoFornecedors\Edit.cshtml" />
     <Content Include="Views\MovimentacaoFornecedors\Index.cshtml" />
+    <Content Include="Views\Produtoes\Create.cshtml" />
+    <Content Include="Views\Produtoes\Delete.cshtml" />
+    <Content Include="Views\Produtoes\Details.cshtml" />
+    <Content Include="Views\Produtoes\Edit.cshtml" />
+    <Content Include="Views\Produtoes\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -333,22 +333,17 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\FornecedoresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MovimentacaoClientesController.cs" />
     <Compile Include="Controllers\MovimentacaoFornecedorsController.cs" />
-    <Compile Include="Controllers\ProdutosController.cs" />
+    <Compile Include="Controllers\ProdutoesController.cs" />
     <Compile Include="Controllers\ProdutosFornecedoresController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606290044186_Tabelas.cs" />
-    <Compile Include="Migrations\201606290044186_Tabelas.Designer.cs">
-      <DependentUpon>201606290044186_Tabelas.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -367,11 +362,6 @@
   <ItemGroup>
     <Folder Include="Views\Shared\DisplayTemplates\" />
     <Folder Include="Views\Shared\EditorTemplates\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201606290044186_Tabelas.resx">
-      <DependentUpon>201606290044186_Tabelas.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

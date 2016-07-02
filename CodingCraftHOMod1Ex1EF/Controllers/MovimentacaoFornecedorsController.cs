@@ -19,7 +19,8 @@ namespace CodingCraftHOMod1Ex1EF.Controllers
         // GET: MovimentacaoFornecedors
         public async Task<ActionResult> Index()
         {
-            return View(await db.MovimentacaoFornecedors.ToListAsync());
+            var movimentacaoFornecedors = db.MovimentacaoFornecedors.Include(m => m.Fornecedor).Include(m => m.Produto);
+            return View(await movimentacaoFornecedors.ToListAsync());
         }
 
         // GET: MovimentacaoFornecedors/Details/5
@@ -40,6 +41,8 @@ namespace CodingCraftHOMod1Ex1EF.Controllers
         // GET: MovimentacaoFornecedors/Create
         public ActionResult Create()
         {
+            ViewBag.FornecedorId = new SelectList(db.Fornecedores, "FornecedorId", "Nome");
+            ViewBag.ProdutoId = new SelectList(db.Produtos, "ProdutoId", "Nome");
             return View();
         }
 
@@ -48,7 +51,7 @@ namespace CodingCraftHOMod1Ex1EF.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "MovimentacaoFornecedorId,Valor,Data,Quantidade")] MovimentacaoFornecedor movimentacaoFornecedor)
+        public async Task<ActionResult> Create([Bind(Include = "MovimentacaoFornecedorId,Valor,Data,Quantidade,FornecedorId,ProdutoId")] MovimentacaoFornecedor movimentacaoFornecedor)
         {
             if (ModelState.IsValid)
             {
@@ -58,6 +61,8 @@ namespace CodingCraftHOMod1Ex1EF.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.FornecedorId = new SelectList(db.Fornecedores, "FornecedorId", "Nome", movimentacaoFornecedor.FornecedorId);
+            ViewBag.ProdutoId = new SelectList(db.Produtos, "ProdutoId", "Nome", movimentacaoFornecedor.ProdutoId);
             return View(movimentacaoFornecedor);
         }
 
@@ -73,6 +78,8 @@ namespace CodingCraftHOMod1Ex1EF.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.FornecedorId = new SelectList(db.Fornecedores, "FornecedorId", "Nome", movimentacaoFornecedor.FornecedorId);
+            ViewBag.ProdutoId = new SelectList(db.Produtos, "ProdutoId", "Nome", movimentacaoFornecedor.ProdutoId);
             return View(movimentacaoFornecedor);
         }
 
@@ -81,7 +88,7 @@ namespace CodingCraftHOMod1Ex1EF.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "MovimentacaoFornecedorId,Valor,Data,Quantidade")] MovimentacaoFornecedor movimentacaoFornecedor)
+        public async Task<ActionResult> Edit([Bind(Include = "MovimentacaoFornecedorId,Valor,Data,Quantidade,FornecedorId,ProdutoId")] MovimentacaoFornecedor movimentacaoFornecedor)
         {
             if (ModelState.IsValid)
             {
@@ -89,6 +96,8 @@ namespace CodingCraftHOMod1Ex1EF.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+            ViewBag.FornecedorId = new SelectList(db.Fornecedores, "FornecedorId", "Nome", movimentacaoFornecedor.FornecedorId);
+            ViewBag.ProdutoId = new SelectList(db.Produtos, "ProdutoId", "Nome", movimentacaoFornecedor.ProdutoId);
             return View(movimentacaoFornecedor);
         }
 

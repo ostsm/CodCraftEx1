@@ -24,12 +24,12 @@ namespace CodingCraftHOMod1Ex1EF.Models
         [Required]
         public int Quantidade { get; set; }
 
-        public int ClienteId { get; set; }
+        public Guid ClienteId { get; set; }
 
-        public int ProdutoId { get; set; }
+        public Guid ProdutoId { get; set; }
         
-        public virtual ICollection<Cliente> Cliente { get; set; }
+        public virtual Cliente Cliente { get; set; }
 
-        public virtual ICollection<Produto> Produto { get; set; }
+        public virtual Produto Produto { get; set; }
     }
 }

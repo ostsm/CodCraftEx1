@@ -1,26 +1,28 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
 using CodingCraftHOMod1Ex1EF.Models;
 using IdentitySample.Models;
-using System.Collections.Generic;
-using System.Transactions;
 
 namespace CodingCraftHOMod1Ex1EF.Controllers
 {
-    public class ProdutosController : Controller
+    public class ProdutoesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Produtos
+        // GET: Produtoes
         public async Task<ActionResult> Index()
         {
             return View(await db.Produtos.ToListAsync());
         }
 
-        // GET: Produtos/Details/5
+        // GET: Produtoes/Details/5
         public async Task<ActionResult> Details(Guid? id)
         {
             if (id == null)
@@ -35,40 +37,31 @@ namespace CodingCraftHOMod1Ex1EF.Controllers
             return View(produto);
         }
 
-        // GET: Produtos/Create
+        // GET: Produtoes/Create
         public ActionResult Create()
         {
-            return View(new Produto
-            {
-                ProdutoFornecedores = new List<ProdutoFornecedor>()
-            });
+            return View();
         }
 
-        // POST: Produtos/Create
+        // POST: Produtoes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ProdutoId,Nome,PrecoVenda,ProdutoFornecedores")] Produto produto)
+        public async Task<ActionResult> Create([Bind(Include = "ProdutoId,Nome,PrecoVenda,Estoque")] Produto produto)
         {
             if (ModelState.IsValid)
             {
-                using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
-                {
-                    produto.ProdutoId = Guid.NewGuid();
-                    db.Produtos.Add(produto);
-                    await db.SaveChangesAsync();
-
-                    scope.Complete();
-
-                    return RedirectToAction("Index");
-                }
+                produto.ProdutoId = Guid.NewGuid();
+                db.Produtos.Add(produto);
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
             }
 
             return View(produto);
         }
 
-        // GET: Produtos/Edit/5
+        // GET: Produtoes/Edit/5
         public async Task<ActionResult> Edit(Guid? id)
         {
             if (id == null)
@@ -83,12 +76,12 @@ namespace CodingCraftHOMod1Ex1EF.Controllers
             return View(produto);
         }
 
-        // POST: Produtos/Edit/5
+        // POST: Produtoes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ProdutoId,Nome,PrecoVenda")] Produto produto)
+        public async Task<ActionResult> Edit([Bind(Include = "ProdutoId,Nome,PrecoVenda,Estoque")] Produto produto)
         {
             if (ModelState.IsValid)
             {
@@ -99,7 +92,7 @@ namespace CodingCraftHOMod1Ex1EF.Controllers
             return View(produto);
         }
 
-        // GET: Produtos/Delete/5
+        // GET: Produtoes/Delete/5
         public async Task<ActionResult> Delete(Guid? id)
         {
             if (id == null)
@@ -114,7 +107,7 @@ namespace CodingCraftHOMod1Ex1EF.Controllers
             return View(produto);
         }
 
-        // POST: Produtos/Delete/5
+        // POST: Produtoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(Guid id)
@@ -123,12 +116,6 @@ namespace CodingCraftHOMod1Ex1EF.Controllers
             db.Produtos.Remove(produto);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
-        }
-
-        public ActionResult NovaLinhaProdutoFornecedor(Guid? ProdutoId = null)
-        {
-            ViewBag.Fornecedores = new SelectList(db.Fornecedores, "FornecedorId", "Nome");
-            return PartialView("_LinhaProdutoFornecedor", new ProdutoFornecedor { ProdutoFornecedorId = Guid.NewGuid() });
         }
 
         protected override void Dispose(bool disposing)
