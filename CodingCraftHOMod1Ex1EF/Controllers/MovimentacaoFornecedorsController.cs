@@ -56,6 +56,15 @@ namespace CodingCraftHOMod1Ex1EF.Controllers
             if (ModelState.IsValid)
             {
                 movimentacaoFornecedor.MovimentacaoFornecedorId = Guid.NewGuid();
+                // Movimentaçao de entrada
+                // Deve ser adicionada a quantidade do produto 
+                var estoqueAtual = db.Produtos.Where(a => a.ProdutoId == movimentacaoFornecedor.ProdutoId).FirstOrDefault();
+
+                estoqueAtual.ProdutoId = movimentacaoFornecedor.ProdutoId;
+                estoqueAtual.Estoque = estoqueAtual.Estoque + movimentacaoFornecedor.Quantidade;
+
+
+
                 db.MovimentacaoFornecedors.Add(movimentacaoFornecedor);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
