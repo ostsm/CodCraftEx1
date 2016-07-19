@@ -23,7 +23,12 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Produtos", "Index", "Produtoes")</li>
+                    <li>@Html.ActionLink("Fornecedores", "Index", "Fornecedores")</li>
+                    <li>@Html.ActionLink("Mov Cli", "Index", "MovimentacaoClientes")</li>
+                    <li>@Html.ActionLink("Mov For", "Index", "MovimentacaoFornecedors")</li>
+                    <li>@Html.ActionLink("Cli", "Index", "Clientes")</li>
+        
 
                     @if (Request.IsAuthenticated && User.IsInRole("Admin")) {
                         <li>@Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")</li>
