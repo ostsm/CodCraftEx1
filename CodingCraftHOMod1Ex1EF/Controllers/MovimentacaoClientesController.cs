@@ -57,6 +57,12 @@ namespace CodingCraftHOMod1Ex1EF.Controllers
             {
                 movimentacaoCliente.MovimentacaoClienteId = Guid.NewGuid();
                 db.MovimentacaoClientes.Add(movimentacaoCliente);
+
+                var estoqueAtual = db.Produtos.Where(a => a.ProdutoId == movimentacaoCliente.ProdutoId).FirstOrDefault();
+
+                estoqueAtual.ProdutoId = movimentacaoCliente.ProdutoId;
+                estoqueAtual.Estoque = estoqueAtual.Estoque - (movimentacaoCliente.Quantidade * estoqueAtual.QntVenda);
+
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }

@@ -13,10 +13,14 @@ namespace CodingCraftHOMod1Ex1EF.Models
 
         [Required]
         public String Nome { get; set; }
-        [Required]
-        public decimal PrecoVenda { get; set; }
 
-        public int Estoque { get; set; }
+        public String Combo { get; set; }
+
+        public double? PrecoVenda { get; set; }
+
+        public int? Estoque { get; set; }
+
+        public int? QntVenda { get; set; }
 
         public virtual ICollection<ProdutoFornecedor> ProdutoFornecedores { get; set; }
 

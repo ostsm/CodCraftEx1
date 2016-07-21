@@ -53,6 +53,11 @@ namespace CodingCraftHOMod1Ex1EF.Controllers
             if (ModelState.IsValid)
             {
                 produto.ProdutoId = Guid.NewGuid();
+
+                //var estoqueAtual = db.Produtos.Where(a => a.ProdutoId == movimentacaoCliente.ProdutoId).FirstOrDefault();
+
+                
+
                 db.Produtos.Add(produto);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");

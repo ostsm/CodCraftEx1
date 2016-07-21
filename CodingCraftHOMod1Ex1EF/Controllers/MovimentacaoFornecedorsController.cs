@@ -58,12 +58,37 @@ namespace CodingCraftHOMod1Ex1EF.Controllers
                 movimentacaoFornecedor.MovimentacaoFornecedorId = Guid.NewGuid();
                 // Movimentaçao de entrada
                 // Deve ser adicionada a quantidade do produto 
-                var estoqueAtual = db.Produtos.Where(a => a.ProdutoId == movimentacaoFornecedor.ProdutoId).FirstOrDefault();
+                var produto = db.Produtos.Where(a => a.ProdutoId == movimentacaoFornecedor.ProdutoId).FirstOrDefault();
 
-                estoqueAtual.ProdutoId = movimentacaoFornecedor.ProdutoId;
-                estoqueAtual.Estoque = estoqueAtual.Estoque + movimentacaoFornecedor.Quantidade;
+                produto.ProdutoId = movimentacaoFornecedor.ProdutoId;
+               
 
+                /// R$0,75 acima produto é vendido por 1 real
+                int i = 0;
+                Double valUnit = Convert.ToDouble(movimentacaoFornecedor.Valor / movimentacaoFornecedor.Quantidade);
+                produto.PrecoVenda = valUnit;
+                if (valUnit > (0.75))
+                    produto.PrecoVenda = 1;
+                // margem de perda 0,15 centavos
 
+                else for (; produto.PrecoVenda < 1.15; i++)
+                    {
+                        produto.PrecoVenda = produto.PrecoVenda + valUnit;
+                    }
+
+                if ( ((produto.PrecoVenda - 1) * -1) > (produto.PrecoVenda + valUnit) - 1) { 
+                    produto.PrecoVenda = produto.PrecoVenda + valUnit;
+                    i++;
+                }
+                if (i > 1)
+                {
+                    produto.Combo = string.Format(" {0} por 1 real", i.ToString());
+                }
+                produto.QntVenda = Convert.ToInt16(i);
+                if (produto.Estoque == null)
+                    produto.Estoque = 0;
+                produto.Estoque = produto.Estoque + movimentacaoFornecedor.Quantidade;
+                produto.PrecoVenda = 1;
 
                 db.MovimentacaoFornecedors.Add(movimentacaoFornecedor);
                 await db.SaveChangesAsync();

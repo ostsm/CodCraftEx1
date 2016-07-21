@@ -15,10 +15,9 @@ namespace CodingCraftHOMod1Ex1EF.Models
 
         public char FormaPagamento { get; set; }
 
-        [Required]
-        public decimal Valor { get; set; }
+        
+        public float Valor { get; set; }
 
-        [Required]
         public DateTime DataSaida { get; set; }
 
         [Required]
