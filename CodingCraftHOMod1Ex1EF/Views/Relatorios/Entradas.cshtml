@@ -1,0 +1,38 @@
+﻿
+@using CodingCraftHOMod1Ex1EF.ViewModel
+@model List<MovimentacaoFornecedorsPesquisaModel>
+@{
+    ViewBag.Title = "Entradas";
+}
+
+
+
+<div class="container">
+    <h2>Entradas</h2>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Fornecedor</th>
+                <th>Produto</th>
+                <th>Data</th>
+                <th>Quantidade</th>
+                <th>Valor</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.FornecedorNome </td>
+                    <td>@item.ProdutoNome</td>
+                    <td>@item.Data </td>
+
+                    <td>@item.Quantidade</td>
+                    <td>@item.Valor  </td>
+
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
