@@ -40,16 +40,16 @@
         </div>
     </div>
     <div class="container body-content">
-        @*http://pt.stackoverflow.com/questions/31239/mensagem-da-controller-para-a-view
+        http://pt.stackoverflow.com/questions/31239/mensagem-da-controller-para-a-view
         <div id="body">
             @Flash.FlashMessage(TempData)
             <div id="flash"></div>
             @RenderSection("featured", required: false)
             <section class="content-wrapper main-content clear-fix">@RenderBody()</section>
-        </div>*@
+        </div>
 
 
-        @RenderBody()
+        @*@RenderBody()*@
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>

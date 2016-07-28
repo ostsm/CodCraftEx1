@@ -20,7 +20,7 @@ namespace CodingCraftHOMod1Ex1EF.Controllers
         // GET: MovimentacaoClientes
         public async Task<ActionResult> Index()
         {
-            var movimentacaoClientes = db.MovimentacaoClientes.Include(m => m.Usuario).Include(m => m.Produto);
+            var movimentacaoClientes = db.MovimentacaoClientes.Include(m => m.Usuario.Id).Include(m => m.Produto);
             return View(await movimentacaoClientes.ToListAsync());
         }
 
