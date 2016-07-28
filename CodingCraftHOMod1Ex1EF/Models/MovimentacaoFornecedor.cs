@@ -13,13 +13,13 @@ namespace CodingCraftHOMod1Ex1EF.Models
         [Key]
         public Guid MovimentacaoFornecedorId { get; set; }
 
-        public char FormaPagamento { get; set; }
+        public char? FormaPagamento { get; set; }
 
         [Required]
-        public double Valor { get; set; }
+        public double? Valor { get; set; }
 
         [Required]
-        public DateTime Data { get; set; }
+        public DateTime? Data { get; set; }
 
         [Required]
         public int Quantidade { get; set; }

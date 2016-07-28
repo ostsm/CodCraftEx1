@@ -16,10 +16,12 @@ namespace CodingCraftHOMod1Ex1EF.Models
 
         public String Combo { get; set; }
 
+        [Display(Name = "R$ Venda")]
         public double? PrecoVenda { get; set; }
 
         public int? Estoque { get; set; }
 
+        [Display(Name = "Quantidade que será retirada do estoque")]
         public int? QntVenda { get; set; }
 
         public virtual ICollection<ProdutoFornecedor> ProdutoFornecedores { get; set; }

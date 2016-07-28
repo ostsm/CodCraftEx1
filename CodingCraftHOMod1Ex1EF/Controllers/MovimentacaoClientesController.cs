@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using CodingCraftHOMod1Ex1EF.Models;
 using IdentitySample.Models;
+using CodingCraftHOMod1Ex1EF.Helpers;
 
 namespace CodingCraftHOMod1Ex1EF.Controllers
 {
@@ -19,7 +20,7 @@ namespace CodingCraftHOMod1Ex1EF.Controllers
         // GET: MovimentacaoClientes
         public async Task<ActionResult> Index()
         {
-            var movimentacaoClientes = db.MovimentacaoClientes.Include(m => m.Cliente).Include(m => m.Produto);
+            var movimentacaoClientes = db.MovimentacaoClientes.Include(m => m.Usuario).Include(m => m.Produto);
             return View(await movimentacaoClientes.ToListAsync());
         }
 
@@ -55,11 +56,15 @@ namespace CodingCraftHOMod1Ex1EF.Controllers
         {
             if (ModelState.IsValid)
             {
-                movimentacaoCliente.MovimentacaoClienteId = Guid.NewGuid();
-                db.MovimentacaoClientes.Add(movimentacaoCliente);
-
                 var estoqueAtual = db.Produtos.Where(a => a.ProdutoId == movimentacaoCliente.ProdutoId).FirstOrDefault();
+                if (estoqueAtual.Estoque <=0 || estoqueAtual.Estoque ==null || estoqueAtual.Estoque < movimentacaoCliente.Quantidade)
+                {
+                    this.FlashError("Produto zerado ou indisponivel para quantidade desejada.");
+                }
+                movimentacaoCliente.MovimentacaoClienteId = Guid.NewGuid();
 
+                db.MovimentacaoClientes.Add(movimentacaoCliente);
+                
                 estoqueAtual.ProdutoId = movimentacaoCliente.ProdutoId;
                 estoqueAtual.Estoque = estoqueAtual.Estoque - (movimentacaoCliente.Quantidade * estoqueAtual.QntVenda);
 

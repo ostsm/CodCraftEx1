@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IdentitySample.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -23,11 +24,12 @@ namespace CodingCraftHOMod1Ex1EF.Models
         [Required]
         public int Quantidade { get; set; }
 
-        public Guid ClienteId { get; set; }
+        [ForeignKey("Usuario")]
+        public int ClienteId { get; set; }
 
         public Guid ProdutoId { get; set; }
-        
-        public virtual Cliente Cliente { get; set; }
+
+        public virtual ApplicationUser Usuario { get; set; }
 
         public virtual Produto Produto { get; set; }
     }

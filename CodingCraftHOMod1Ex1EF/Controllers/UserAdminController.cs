@@ -61,12 +61,9 @@ namespace IdentitySample.Controllers
 
         //
         // GET: /Users/Details/5
-        public async Task<ActionResult> Details(string id)
+        public async Task<ActionResult> Details(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            
             var user = await UserManager.FindByIdAsync(id);
 
             ViewBag.RoleNames = await UserManager.GetRolesAsync(user.Id);
@@ -122,12 +119,8 @@ namespace IdentitySample.Controllers
 
         //
         // GET: /Users/Edit/1
-        public async Task<ActionResult> Edit(string id)
+        public async Task<ActionResult> Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             var user = await UserManager.FindByIdAsync(id);
             if (user == null)
             {
@@ -158,11 +151,7 @@ namespace IdentitySample.Controllers
             if (ModelState.IsValid)
             {
                 var user = await UserManager.FindByIdAsync(editUser.Id);
-                if (user == null)
-                {
-                    return HttpNotFound();
-                }
-
+                
                 user.UserName = editUser.Email;
                 user.Email = editUser.Email;
 
@@ -192,12 +181,9 @@ namespace IdentitySample.Controllers
 
         //
         // GET: /Users/Delete/5
-        public async Task<ActionResult> Delete(string id)
+        public async Task<ActionResult> Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+           
             var user = await UserManager.FindByIdAsync(id);
             if (user == null)
             {
@@ -210,14 +196,11 @@ namespace IdentitySample.Controllers
         // POST: /Users/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(string id)
+        public async Task<ActionResult> DeleteConfirmed(int id)
         {
             if (ModelState.IsValid)
             {
-                if (id == null)
-                {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                }
+                
 
                 var user = await UserManager.FindByIdAsync(id);
                 if (user == null)

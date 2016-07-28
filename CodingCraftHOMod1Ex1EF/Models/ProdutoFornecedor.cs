@@ -13,6 +13,7 @@ namespace CodingCraftHOMod1Ex1EF.Models
         public Guid FornecedorId { get; set; }
 
         [Required]
+        [Display(Name = "R$ Valor Compra")]
         public decimal PrecoCompra { get; set; }
 
         public virtual Produto Produto { get; set; }

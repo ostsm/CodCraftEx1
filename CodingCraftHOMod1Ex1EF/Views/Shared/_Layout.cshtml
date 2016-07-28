@@ -25,9 +25,9 @@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Produtos", "Index", "Produtoes")</li>
                     <li>@Html.ActionLink("Fornecedores", "Index", "Fornecedores")</li>
-                    <li>@Html.ActionLink("Mov Cli", "Index", "MovimentacaoClientes")</li>
-                    <li>@Html.ActionLink("Mov For", "Index", "MovimentacaoFornecedors")</li>
-                    <li>@Html.ActionLink("Cli", "Index", "Clientes")</li>
+                    <li>@Html.ActionLink("Movimentações Clientes", "Index", "MovimentacaoClientes")</li>
+                    <li>@Html.ActionLink("Movimentações Fornecedores", "Index", "MovimentacaoFornecedors")</li>
+                    <li>@Html.ActionLink("Clientes", "Index", "Clientes")</li>
         
 
                     @if (Request.IsAuthenticated && User.IsInRole("Admin")) {
@@ -40,6 +40,15 @@
         </div>
     </div>
     <div class="container body-content">
+        @*http://pt.stackoverflow.com/questions/31239/mensagem-da-controller-para-a-view
+        <div id="body">
+            @Flash.FlashMessage(TempData)
+            <div id="flash"></div>
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">@RenderBody()</section>
+        </div>*@
+
+
         @RenderBody()
         <hr />
         <footer>
