@@ -12,17 +12,17 @@ using IdentitySample.Models;
 
 namespace CodingCraftHOMod1Ex1EF.Controllers
 {
-    public class ClientesController : Controller
+    public class ClienteController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Clientes
+        // GET: Cliente
         public async Task<ActionResult> Index()
         {
             return View(await db.Clientes.ToListAsync());
         }
 
-        // GET: Clientes/Details/5
+        // GET: Cliente/Details/5
         public async Task<ActionResult> Details(Guid? id)
         {
             if (id == null)
@@ -37,13 +37,13 @@ namespace CodingCraftHOMod1Ex1EF.Controllers
             return View(cliente);
         }
 
-        // GET: Clientes/Create
+        // GET: Cliente/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Clientes/Create
+        // POST: Cliente/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -61,7 +61,7 @@ namespace CodingCraftHOMod1Ex1EF.Controllers
             return View(cliente);
         }
 
-        // GET: Clientes/Edit/5
+        // GET: Cliente/Edit/5
         public async Task<ActionResult> Edit(Guid? id)
         {
             if (id == null)
@@ -76,7 +76,7 @@ namespace CodingCraftHOMod1Ex1EF.Controllers
             return View(cliente);
         }
 
-        // POST: Clientes/Edit/5
+        // POST: Cliente/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -92,7 +92,7 @@ namespace CodingCraftHOMod1Ex1EF.Controllers
             return View(cliente);
         }
 
-        // GET: Clientes/Delete/5
+        // GET: Cliente/Delete/5
         public async Task<ActionResult> Delete(Guid? id)
         {
             if (id == null)
@@ -107,7 +107,7 @@ namespace CodingCraftHOMod1Ex1EF.Controllers
             return View(cliente);
         }
 
-        // POST: Clientes/Delete/5
+        // POST: Cliente/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(Guid id)
