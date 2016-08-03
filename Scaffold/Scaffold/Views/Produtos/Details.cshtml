@@ -1,0 +1,24 @@
+@model CodingCraftHOMod1Ex2Scaffolding.Models.Produto
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Produto</legend>
+
+    <div class="display-label">Nome</div>
+    <div class="display-field">@Model.Nome</div>
+
+    <div class="display-label">Preco</div>
+    @*<div class="display-field">@String.Format("{0:F}", Model.Preco)</div>*@
+    <div class="display-field">@Html.DisplayFor(model => model.Preco)</div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ProdutoId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+

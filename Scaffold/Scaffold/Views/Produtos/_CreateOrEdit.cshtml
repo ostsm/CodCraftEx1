@@ -1,0 +1,20 @@
+@model CodingCraftHOMod1Ex2Scaffolding.Models.Produto
+
+@* This partial view defines form fields that will appear when creating and editing entities *@
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Nome)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Nome)
+    @Html.ValidationMessageFor(model => model.Nome)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Preco)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Preco)
+    @Html.ValidationMessageFor(model => model.Preco)
+</div>
+

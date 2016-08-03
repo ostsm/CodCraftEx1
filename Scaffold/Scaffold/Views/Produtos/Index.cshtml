@@ -1,0 +1,41 @@
+@model IEnumerable<CodingCraftHOMod1Ex2Scaffolding.Models.Produto>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th></th>
+        <th>
+            Nome
+        </th>
+        <th>
+            Preco
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ProdutoId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ProdutoId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ProdutoId })
+        </td>
+        <td>
+			@item.Nome
+        </td>
+        <td>
+			@String.Format("{0:F}", item.Preco)
+        </td>
+    </tr>
+}
+
+</table>
+
+
